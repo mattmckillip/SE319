@@ -1,0 +1,4 @@
+ADD $s0, $t1, $t2;
+ADDI $t1, $t1, 3;
+LW $t3, $t2;
+LWI $t4, 10;

@@ -1,0 +1,4 @@
+ADD R1, R2, R1;
+LW R3, R3;
+PRINT R1;
+

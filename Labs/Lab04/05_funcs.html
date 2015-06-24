@@ -1,0 +1,58 @@
+<html>
+<head>
+<!--
+  THE PURPOSE OF THIS EXAMPLE IS TO SHOW HOW 
+  FUNCTION NAMES ARE POINTERS TO THE FUNCTIONS
+
+  ALSO, WE SHOW NAMED FUNCTION EXPRESSIONS.
+-->
+</head>
+
+<body>
+<h1>
+<script> 
+
+function fact(n) {
+  if (n == 2) return 2;
+  else return n * fact(n-1);
+}
+
+document.write(fact(4) + "<br>");
+
+var newFact = fact;
+
+// TODO: What do you expect will happen if you comment the next line.
+// Try it!
+// The second result is not written.
+
+//document.write(newFact(4) + "<br>");
+
+
+// TODO: What do you expect will happen if you comment the next line.
+// Try it! Why does this happen?
+// Since fact is no longer null it can be written in the next two write
+// statements
+
+//fact = null;
+document.write(newFact(4) + "<br>");
+
+
+// This will always work -- use a NAMED function expression
+var factorial = (function f(n) {
+  if (n == 2) return 2;
+  else return n * f(n-1);
+});
+newFact = factorial;
+factorial = null;
+// TODO: What do you expect will happen if you comment the next line.
+// Try it! Why does this happen?
+// It just doesn't perform the last write. Because the write command
+// is not run. I'm not sure if this exercise is written in the right 
+// order.  newfact still gives a non null result because it is created
+// and initiated before factorial is set to null.
+
+//document.write(newFact(4) + "<br>");
+
+</script>
+</body>
+</html>

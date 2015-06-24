@@ -1,0 +1,87 @@
+<html> 
+<head>
+<title>
+      COM S 319 Lab : Javascript
+</title>
+
+</head>
+
+<body>
+<h1>
+  COM S 319 Lab : Javascript Snake
+</h1>
+
+<input type="button" id="start" name="start" value="Start" onclick="starting()" />
+<input type="button" id="turnLeft" name="turnLeft" value="Turn Left" onclick="leftTurn()" />
+<input type="button" id="turnRight" name="turnLeft" value="Turn Right" onclick="rightTurn()" />
+<p>
+<canvas id="myCanvas" width="800" height="450"
+	style="border:1px solid #000000;">
+</canvas>
+</p>
+
+<script>
+var timer;
+var xpos = 0;
+var ypos = 225;
+var UP = 0;
+var RIGHT = 1;
+var DOWN = 2;
+var LEFT = 3;
+var direction = RIGHT;
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+var rectWidth = 8;
+ctx.fillStyle = "#FF0000";
+
+function starting() {
+	timer=setInterval(function () {advance()}, 200);
+}
+
+function advance() {
+	if (xpos >= 0 && xpos <= 800 && ypos >= 0 && ypos <= 450){
+		ctx.fillRect(xpos,ypos,rectWidth,rectWidth);
+		if (direction == UP){
+			ypos = ypos - rectWidth;
+		}
+		else if (direction == LEFT){
+			xpos = xpos - rectWidth;
+		}
+		else if (direction == DOWN){
+			ypos = ypos + rectWidth;
+		}
+		else{
+			xpos = xpos + rectWidth;
+		}
+	}
+	else{
+		clearInterval(timer);
+		alert("Whoops! Hit the wall!");
+		ctx.clearRect(0,0,c.width,c.height);
+		xpos = 0;
+		ypos = 225;
+		direction = RIGHT;
+	}
+}
+
+function leftTurn() {
+	if (direction == UP) {
+		direction = LEFT;
+	}
+	else{
+		direction--;
+	}
+}
+
+function rightTurn() {
+	if (direction == LEFT) {
+		direction = UP;
+	}
+	else{
+		direction++;
+	}
+}
+</script>
+
+</body>
+</html>

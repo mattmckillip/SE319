@@ -1,0 +1,83 @@
+<html>
+<head>
+<!-- 
+  THE PURPOSE OF THIS EXAMPLE IS TO SHOW TWO THINGS:
+  a) The order in which js scripts are run and pages are rendered
+  b) understand local and global variables in js
+
+  Note that the onload action happens after all external files have been
+  loaded. Rendering of html is usually stopped until js scripts are
+  executed. Rendering can occur when all of html parsed.
+
+  Note that although use of var for a variable may occur AFTER a use of
+  the variable - it is STILL considered a LOCAL variable.
+  Take the example of i in function test(). It is set to 3, and then
+  a var is used. It is a local variable and the print of i OUTSIDE test
+  shows 2 (the global variable result).
+
+-->
+
+
+<script> 
+// TODO: IT IS FUN TO TRY TO MAKE A LIST OF WHAT WILL GET SHOWN ON
+// SCREEN AND IN WHAT ORDER.
+// FIGURE OUT WHAT IS HAPPENING.
+
+// Alert "In head: 1" - first call in this very first script
+// Alert "script1: value of i before test() run: 1" - js run before html rendered
+// Alert "inside test method: test called before test declared" - occurs in first script
+// Alert "inside test method: k is undefined" - k not defined until script 2
+// Alert "inside test method: i is (a local variable) 5" - local to test method
+// Alert "inside test method: before return k is 2" - local k
+// Alert "script1: value of i after test() run: 1" - outside of test method
+// Alert "script1: value of j after test() run: 4" - only j available in test method 
+// "Hello 1!" and "Hello 2!" printed - html rendered after script 1 run
+// Alert "script2: i is 1" - outside of test method
+// Cannot call k=k+1 - k not defined
+// "Hello 3!" printed - html rendered after 2nd js script run
+// Alert "inside test method: test called after load completed!" - onload call
+// Alert "inside test method: k is undefined" - k not defined until for loop
+// Alert "inside test method: i is (a local variable) 5" - again returns local i
+// Alert "inside test method: before return k is 2" - local k from for loop
+
+i = 1; 
+alert("In head: " + i);
+</script>
+</head>
+
+<body onload="test('test called after load completed!');">
+Hello 1!
+<script> 
+i = i++; 
+alert("script1: value of i before test() run: " + i);
+test("test called before test declared");
+alert("script1: value of i after test() run: " + i);
+
+alert ("script1: value of j after test() run: " + j);
+
+function test(s) {
+  alert ("inside test method: " + s); 
+  alert ("inside test method: k is " + k);
+  i = 3;
+  var i = 5;
+  alert ("inside test method: i is (a local variable) " + i);
+  j = 4;
+
+  for (var k = 0; k < 2; k++) { }
+  alert ("inside test method: before return k is " + k);
+} // end of test method
+
+</script>
+
+Hello 2!
+
+<script> 
+  alert ("script2: i is " + i);
+  k = k+1;
+  alert ("script2: k is " + k);
+</script>
+
+Hello 3!
+
+</body>
+</html>

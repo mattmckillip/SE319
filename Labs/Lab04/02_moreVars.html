@@ -1,0 +1,69 @@
+<html>
+<head>
+<!--
+  THE PURPOSE OF THIS EXAMPLE IS TO SHOW HOW ==  and == work
+  ALSO, CONDITION IN IF STATEMENT ALWAYS EVALUATES TO TRUE OR FALSE!
+-->
+</head>
+
+<body>
+<script> 
+
+  var x; 
+
+  if (x == undefined) {
+    document.write("x is undefined <br>");
+  }
+
+  // == allows conversion between types. Here 5 is converted to String
+  if ("5" == 5) {
+    document.write("\"5\" is ==  5<br>");
+  }
+
+  // ===  and !== do not allow conversion between types
+  if ("5" !== 5) {
+    document.write("\"5\" is not === as 5<br>");
+  }
+
+  // CONDITION IN IF STATEMENT EVALUATES TO FALSE HERE.
+  if ("") {
+    document.write("true? <br>");
+  }
+  else {
+    document.write("false? <br>");
+  }
+  
+  //Test arrays
+  if (["10","20","30"]==[10,20,30])
+  {
+	document.write("arrays are equal<br>");
+  }
+  else
+  {
+	document.write("arrays are not equal<br>");
+  }
+  
+  //Test int 1
+  if (1)
+  {
+	document.write("1 is true<br>");
+  }
+  else
+  {
+	document.write("1 is false<br>");
+  }
+  
+  //Test int 0
+  if (0)
+  {
+	document.write("0 is true<br>");
+  }
+  else
+  {
+	document.write("0 is false<br>");
+  }
+  
+
+</script>
+</body>
+</html>
